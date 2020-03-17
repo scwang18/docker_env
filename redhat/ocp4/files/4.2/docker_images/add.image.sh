@@ -5,7 +5,7 @@ set -x
 
 /bin/rm -f pull.add.image.failed.list pull.add.image.ok.list yaml.add.image.ok.list
 
-export LOCAL_REG='registry.redhat.ren:5000'
+export LOCAL_REG='registry.ipincloud.com:5000'
 
 source image.mirror.fn.sh
 

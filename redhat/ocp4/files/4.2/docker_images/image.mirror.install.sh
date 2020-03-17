@@ -6,7 +6,7 @@ set -x
 /bin/rm -f pull.image.failed.list pull.image.ok.list yaml.image.ok.list pull.sample.image.ok.list yaml.sample.image.ok.list pull.sample.image.failed.list
 
 # export OCP_RELEASE=${BUILDNUMBER}
-# export LOCAL_REG='registry.redhat.ren'
+# export LOCAL_REG='registry.ipincloud.com'
 # export LOCAL_REPO='ocp4/openshift4'
 # export UPSTREAM_REPO='openshift-release-dev'
 # export LOCAL_SECRET_JSON="pull-secret.json"

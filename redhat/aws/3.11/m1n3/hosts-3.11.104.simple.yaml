@@ -68,7 +68,7 @@ openshift_disable_check=docker_storage
 # EXTERNAL REGISTRY LOCATION 
 #####################################################
 
-oreg_url=aws-registry.redhat.ren/openshift3/ose-${component}:${version}
+oreg_url=aws-registry.ipincloud.com/openshift3/ose-${component}:${version}
 openshift_examples_modify_imagestreams=true
 
 
@@ -101,12 +101,12 @@ openshift_logging_es_memory_limit=2G
 #####################################################
 
 openshift_enable_service_catalog=false
-openshift_service_catalog_image_prefix=aws-registry.redhat.ren/openshift3/ose-
+openshift_service_catalog_image_prefix=aws-registry.ipincloud.com/openshift3/ose-
 openshift_service_catalog_image_version=v3.11.104
 
 openshift_release=v3.11
 
-system_images_registry="aws-registry.redhat.ren"
+system_images_registry="aws-registry.ipincloud.com"
 
 openshift_enable_unsupported_configurations=True
 

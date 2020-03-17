@@ -99,7 +99,7 @@ spec:
   containers:
   - name: samplepod
     command: ["ping","localhost"]
-    image: aws-registry.redhat.ren/nicolaka/netshoot
+    image: aws-registry.ipincloud.com/nicolaka/netshoot
 EOF
 
 cat <<EOF | kubectl create -f -
@@ -113,7 +113,7 @@ spec:
   containers:
   - name: samplepod
     command: ["ping","localhost"]
-    image: aws-registry.redhat.ren/nicolaka/netshoot
+    image: aws-registry.ipincloud.com/nicolaka/netshoot
 EOF
 
 cat <<EOF | kubectl create -f -
@@ -129,7 +129,7 @@ spec:
   containers:
   - name: samplepod
     command: ["ping","localhost"]
-    image: aws-registry.redhat.ren/nicolaka/netshoot
+    image: aws-registry.ipincloud.com/nicolaka/netshoot
 EOF
 
 

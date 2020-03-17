@@ -9,7 +9,7 @@
 # do not use 127.0.0.1
 yum install -y podman buildah skopeo
 cat << EOF >>  /etc/hosts
-45.63.58.108 registry.redhat.ren
+45.63.58.108 registry.ipincloud.com
 EOF
 # podman login -u="redhat+quay" ****************
 firewall-cmd --permanent --zone=public --add-port=4443/tcp
@@ -69,7 +69,7 @@ podman run --restart=always \
     -v /data/quay/config:/conf/stack:Z \
     -v /data/quay/storage:/datastorage:Z \
     -d quay.io/redhat/quay:v3.2.0
-# https://registry.redhat.ren:4443/
+# https://registry.ipincloud.com:4443/
 # quay admin:  admin   /   5a4ru36a8zfr1gp8
 
 podman run --name clair-postgres --pod quay \
@@ -91,10 +91,10 @@ podman run --restart=always -d \
 /bin/cp -f /data/quay/config/extra_ca_certs/redhat.ren.crt /etc/pki/ca-trust/source/anchors/
 update-ca-trust extract
 
-podman login -u admin -p 5a4ru36a8zfr1gp8 registry.redhat.ren:4443
+podman login -u admin -p 5a4ru36a8zfr1gp8 registry.ipincloud.com:4443
 podman pull docker.io/library/centos
-podman tag docker.io/library/centos registry.redhat.ren:4443/admin/test:centos
-podman push registry.redhat.ren:4443/admin/test:centos
+podman tag docker.io/library/centos registry.ipincloud.com:4443/admin/test:centos
+podman push registry.ipincloud.com:4443/admin/test:centos
 ```
 可以看到，安全扫描已经生效。
 

@@ -87,8 +87,8 @@ spec:
             name: rootdisk-win7
           name: rootdisk
         - containerDisk:
-            image: kni-registry.redhat.ren:5021/cnv-tech-preview/virtio-win
+            image: kni-registry.ipincloud.com:5021/cnv-tech-preview/virtio-win
           name: virtiocontainerdisk
         - containerDisk:
-            image: kni-registry.redhat.ren:5021/win7_install
+            image: kni-registry.ipincloud.com:5021/win7_install
           name: win7installdisk

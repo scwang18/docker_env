@@ -57,7 +57,7 @@ objects:
       spec:
         containers:
         - name: tiller
-          image: aws-registry.redhat.ren/kubernetes-helm/tiller:${HELM_VERSION}
+          image: aws-registry.ipincloud.com/kubernetes-helm/tiller:${HELM_VERSION}
           env:
           - name: TILLER_NAMESPACE
             valueFrom:

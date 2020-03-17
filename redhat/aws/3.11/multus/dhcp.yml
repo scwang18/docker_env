@@ -25,7 +25,7 @@ spec:
       - name: kube-dhcp
         # Based on: https://github.com/s1061123/cni-dhcp-daemon/blob/master/Dockerfile
         # image: dougbtv/dhcp:latest
-        image: aws-registry.redhat.ren/dougbtv/dhcp
+        image: aws-registry.ipincloud.com/dougbtv/dhcp
         resources:
           requests:
             cpu: "100m"

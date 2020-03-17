@@ -3,7 +3,7 @@
 set -e
 set -x
 
-export LOCAL_REG='registry.redhat.ren:5443/'
+export LOCAL_REG='registry.ipincloud.com:5443/'
 # export LOCAL_REG=''
 gogs_var_date='2020-02-17'
 nexus_var_date='2020-01-14'

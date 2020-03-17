@@ -34,7 +34,7 @@ buildah push docker.io/wangzheng422/custom-registry-redhat:${var_date}
 # podman tag quay.io/wangzheng422/custom-registry-redhat:${var_date} quay.io/wangzheng422/custom-registry-redhat:latest
 # podman push quay.io/wangzheng422/custom-registry-redhat:latest
 
-# podman image save registry.redhat.ren/ocp-operator/custom-registry:redhat | pigz -c > custom-registry.redhat.tgz
+# podman image save registry.ipincloud.com/ocp-operator/custom-registry:redhat | pigz -c > custom-registry.redhat.tgz
 
 ##################################
 # for certifiyed
@@ -61,7 +61,7 @@ buildah push docker.io/wangzheng422/custom-registry-certified:$var_date
 # podman tag quay.io/wangzheng422/custom-registry-certified:${var_date} quay.io/wangzheng422/custom-registry-certified:latest
 # podman push quay.io/wangzheng422/custom-registry-certified:latest
 
-# podman image save registry.redhat.ren/ocp-operator/custom-registry:certified | pigz -c > custom-registry.certified.tgz
+# podman image save registry.ipincloud.com/ocp-operator/custom-registry:certified | pigz -c > custom-registry.certified.tgz
 
 ####################################
 # for community
@@ -88,7 +88,7 @@ buildah push docker.io/wangzheng422/custom-registry-community:$var_date
 # podman tag quay.io/wangzheng422/custom-registry-community:${var_date} quay.io/wangzheng422/custom-registry-community:latest
 # podman push quay.io/wangzheng422/custom-registry-community:latest
 
-# podman image save registry.redhat.ren/ocp-operator/custom-registry:community | pigz -c > custom-registry.community.tgz
+# podman image save registry.ipincloud.com/ocp-operator/custom-registry:community | pigz -c > custom-registry.community.tgz
 
 #####################################
 ## restore

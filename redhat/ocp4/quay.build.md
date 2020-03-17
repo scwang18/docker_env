@@ -13,7 +13,7 @@ https://access.redhat.com/documentation/en-us/red_hat_quay/3/html-single/manage_
 
 ```bash
 cat << EOF >>  /etc/hosts
-45.63.58.108 registry.redhat.ren
+45.63.58.108 registry.ipincloud.com
 EOF
 
 firewall-cmd --permanent --zone=public --add-port=4443/tcp
@@ -79,7 +79,7 @@ podman run -d --restart=always \
 
 # test mysql
 # yum install -y mariadb
-# mysql -h registry.redhat.ren -u root --password=q98u335musckfqxe
+# mysql -h registry.ipincloud.com -u root --password=q98u335musckfqxe
 
 # quay config
 # podman login -u="redhat+quay" ****************
@@ -159,7 +159,7 @@ clair:
       http:
         # QUAY_ENDPOINT defines the endpoint at which Quay is running.
         # For example: https://myregistry.mycompany.com
-        endpoint: https://registry.redhat.ren:4443/secscan/notify
+        endpoint: https://registry.ipincloud.com:4443/secscan/notify
         proxy: http://localhost:6063
 
 jwtproxy:
@@ -204,7 +204,7 @@ jwtproxy:
         options:
           # QUAY_ENDPOINT defines the endpoint at which Quay is running.
           # Example: https://myregistry.mycompany.com
-          registry: https://registry.redhat.ren:4443/keys/
+          registry: https://registry.ipincloud.com:4443/keys/
 EOF
 
 /bin/cp -f /data/quay/config/ssl.cert /data/quay/clair-config/clair.crt

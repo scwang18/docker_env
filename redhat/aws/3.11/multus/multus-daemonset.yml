@@ -120,7 +120,7 @@ spec:
       containers:
       - name: kube-multus
         #image: nfvpe/multus:latest
-        image: aws-registry.redhat.ren/cnv-tech-preview/multus-cni:latest
+        image: aws-registry.ipincloud.com/cnv-tech-preview/multus-cni:latest
         resources:
           requests:
             cpu: "100m"

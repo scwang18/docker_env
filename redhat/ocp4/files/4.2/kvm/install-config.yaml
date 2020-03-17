@@ -19,7 +19,7 @@ networking:
   - 172.30.0.0/16
 platform:
   none: {}
-pullSecret: '{"auths":{"registry.redhat.ren": {"auth": "ZHVtbXk6ZHVtbXk=","email": "noemail@localhost"}}}'
+pullSecret: '{"auths":{"registry.ipincloud.com": {"auth": "ZHVtbXk6ZHVtbXk=","email": "noemail@localhost"}}}'
 sshKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnejC+QkKXqEOj7lSKxpHnnIxPli2iwNveE9apd0QUFgc3xTyaQWyOqbFEsUzR2MnXV36a89DiOVnecVgXZqVDFrDZDRkMLKJTm2U85AExWE0Lmtkxpmyg5OdpFmTBCutpNy2LigG8LTkMPXIgDrfNF+37/BvKzvWdrhR6/dQwqfMGqfRi+PYscD6nUJG5kAzVugalyw8+Sv9CzS+4BMRCZ4EVKu5bB2wl1bw7KCJc+D0nhnc87qGswJquleT7CGi7N2k6/Q1iK80l1KymmwWcwvh+Yf4Nhdk4cxbeSZmPGBQIQMmOUzK0Q4xs3XZd2WvZd/NYj0D83sSCQGXEUkGL root@helper'
 additionalTrustBundle: |
   -----BEGIN CERTIFICATE-----
@@ -46,8 +46,8 @@ additionalTrustBundle: |
   -----END CERTIFICATE-----
 imageContentSources:
 - mirrors:
-  - registry.redhat.ren:5443/ocp4/openshift4
+  - registry.ipincloud.com:5443/ocp4/openshift4
   source: quay.io/openshift-release-dev/ocp-release
 - mirrors:
-  - registry.redhat.ren:5443/ocp4/openshift4
+  - registry.ipincloud.com:5443/ocp4/openshift4
   source: quay.io/openshift-release-dev/ocp-v4.0-art-dev

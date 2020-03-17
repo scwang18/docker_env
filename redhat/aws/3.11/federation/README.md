@@ -28,12 +28,12 @@ wget https://github.com/kubernetes-sigs/kubefed/releases/download/v0.0.10/federa
 wget https://github.com/kubernetes-sigs/kubefed/releases/download/v0.0.10/kubefedctl.tgz
 
 docker pull quay.io/kubernetes-multicluster/federation-v2:v0.0.10
-docker tag quay.io/kubernetes-multicluster/federation-v2:v0.0.10 aws-registry.redhat.ren/kubernetes-multicluster/federation-v2:v0.0.10 
-docker push aws-registry.redhat.ren/kubernetes-multicluster/federation-v2:v0.0.10 
+docker tag quay.io/kubernetes-multicluster/federation-v2:v0.0.10 aws-registry.ipincloud.com/kubernetes-multicluster/federation-v2:v0.0.10 
+docker push aws-registry.ipincloud.com/kubernetes-multicluster/federation-v2:v0.0.10 
 
 docker pull gcr.io/kubernetes-helm/tiller:v2.14.1
-docker tag gcr.io/kubernetes-helm/tiller:v2.14.1 aws-registry.redhat.ren/kubernetes-helm/tiller:v2.14.1
-docker push aws-registry.redhat.ren/kubernetes-helm/tiller:v2.14.1
+docker tag gcr.io/kubernetes-helm/tiller:v2.14.1 aws-registry.ipincloud.com/kubernetes-helm/tiller:v2.14.1
+docker push aws-registry.ipincloud.com/kubernetes-helm/tiller:v2.14.1
 
 scp helm-v2.14.1-linux-amd64.tar.gz ec2-user@aws-m1.redhat.ren:~/
 scp federation-v2-0.0.10.tgz ec2-user@aws-m1.redhat.ren:~/
@@ -43,8 +43,8 @@ scp kubefedctl.tgz ec2-user@aws-m1.redhat.ren:~/
 sudo -i
 cd /home/ec2-user/
 tar zvxf helm-v2.14.1-linux-amd64.tar.gz
-./linux-amd64/helm init --client-only --stable-repo-url http://aws-registry.redhat.ren:8080/
-./linux-amd64/helm repo add chartmuseum http://aws-registry.redhat.ren:8080/
+./linux-amd64/helm init --client-only --stable-repo-url http://aws-registry.ipincloud.com:8080/
+./linux-amd64/helm repo add chartmuseum http://aws-registry.ipincloud.com:8080/
 ./linux-amd64/helm search chartmuseum/
 
 # oc adm new-project kube-federation-system
@@ -95,13 +95,13 @@ subjects:
     namespace: kube-system
 EOF
 
-./linux-amd64/helm init --service-account tiller --client-only --stable-repo-url http://aws-registry.redhat.ren:8080/  #--tiller-tls-verify
+./linux-amd64/helm init --service-account tiller --client-only --stable-repo-url http://aws-registry.ipincloud.com:8080/  #--tiller-tls-verify
 
 export TILLER_NAMESPACE=tiller
 oc process -f ./tiller-template.yaml -p TILLER_NAMESPACE="${TILLER_NAMESPACE}" -p HELM_VERSION=v2.14.1 | oc create -f -
 
-oc --namespace=tiller set image deployments/tiller-deploy tiller=aws-registry.redhat.ren/kubernetes-helm/tiller:v2.14.1 
-oc --namespace=kube-system set image deployments/tiller-deploy tiller=aws-registry.redhat.ren/kubernetes-helm/tiller:v2.14.1 
+oc --namespace=tiller set image deployments/tiller-deploy tiller=aws-registry.ipincloud.com/kubernetes-helm/tiller:v2.14.1 
+oc --namespace=kube-system set image deployments/tiller-deploy tiller=aws-registry.ipincloud.com/kubernetes-helm/tiller:v2.14.1 
 
 ## delete tiller
 oc project tiller
@@ -109,8 +109,8 @@ oc process -f ./tiller-template.yaml -p TILLER_NAMESPACE="${TILLER_NAMESPACE}" -
 
 ./linux-amd64/helm version
 
-./linux-amd64/helm init --client-only --stable-repo-url http://aws-registry.redhat.ren:8080/
-./linux-amd64/helm repo add chartmuseum http://aws-registry.redhat.ren:8080/
+./linux-amd64/helm init --client-only --stable-repo-url http://aws-registry.ipincloud.com:8080/
+./linux-amd64/helm repo add chartmuseum http://aws-registry.ipincloud.com:8080/
 ./linux-amd64/helm search chartmuseum/
 ./linux-amd64/helm repo list
 

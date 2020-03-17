@@ -81,11 +81,11 @@ spec:
       terminationGracePeriodSeconds: 0
       volumes:
         - containerDisk:
-            image: 'kni-registry.redhat.ren:5021/win7_install'
+            image: 'kni-registry.ipincloud.com:5021/win7_install'
           name: installcd
         - dataVolume:
             name: win7-kni-win7
           name: win7-kni
         - containerDisk:
-            image: kni-registry.redhat.ren:5021/cnv-tech-preview/virtio-win
+            image: kni-registry.ipincloud.com:5021/cnv-tech-preview/virtio-win
           name: virtiocontainerdisk

@@ -4,7 +4,7 @@ set -e
 set -x
 
 # export OCP_RELEASE=${BUILDNUMBER}
-# export LOCAL_REG='registry.redhat.ren'
+# export LOCAL_REG='registry.ipincloud.com'
 # export LOCAL_REPO='ocp4/openshift4'
 # export UPSTREAM_REPO='openshift-release-dev'
 # export LOCAL_SECRET_JSON="pull-secret.json"

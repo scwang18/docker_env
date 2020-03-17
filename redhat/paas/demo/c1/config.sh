@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 export tag="v3.11.98"
-export private_repo="it-registry.redhat.ren:5021"
+export private_repo="it-registry.ipincloud.com:5021"
 export major_tag="v3.11"
 # https://access.redhat.com/articles/2834301
 # docker search rhgs3 | grep redhat.io | awk '{print $2}'

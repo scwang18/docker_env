@@ -5,11 +5,11 @@ set -x
 
 parm_file=$1
 
-export LOCAL_REG='registry.redhat.ren:5443'
-export MID_REG="registry.redhat.ren"
+export LOCAL_REG='registry.ipincloud.com:5443'
+export MID_REG="registry.ipincloud.com"
 
 # export OCP_RELEASE=${BUILDNUMBER}
-# export LOCAL_REG='registry.redhat.ren'
+# export LOCAL_REG='registry.ipincloud.com'
 # export LOCAL_REPO='ocp4/openshift4'
 # export UPSTREAM_REPO='openshift-release-dev'
 # export LOCAL_SECRET_JSON="pull-secret.json"

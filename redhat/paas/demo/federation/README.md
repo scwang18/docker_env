@@ -50,14 +50,14 @@ docker run --rm -it \
 
 docker load -i federation.tgz
 
-docker tag chartmuseum/chartmuseum it-registry.redhat.ren:5021/chartmuseum/chartmuseum
-docker tag quay.io/kubernetes-multicluster/federation-v2:v0.0.10 it-registry.redhat.ren:5021/kubernetes-multicluster/federation-v2
-docker tag quay.io/kubernetes-multicluster/kubefed:v0.1.0-rc1 it-registry.redhat.ren:5021/kubernetes-multicluster/kubefed
-docker tag gcr.io/kubernetes-helm/tiller:v2.14.0 it-registry.redhat.ren:5021/kubernetes-helm/tiller
+docker tag chartmuseum/chartmuseum it-registry.ipincloud.com:5021/chartmuseum/chartmuseum
+docker tag quay.io/kubernetes-multicluster/federation-v2:v0.0.10 it-registry.ipincloud.com:5021/kubernetes-multicluster/federation-v2
+docker tag quay.io/kubernetes-multicluster/kubefed:v0.1.0-rc1 it-registry.ipincloud.com:5021/kubernetes-multicluster/kubefed
+docker tag gcr.io/kubernetes-helm/tiller:v2.14.0 it-registry.ipincloud.com:5021/kubernetes-helm/tiller
 
-docker push it-registry.redhat.ren:5021/chartmuseum/chartmuseum
-docker push it-registry.redhat.ren:5021/kubernetes-multicluster/federation-v2
-docker push it-registry.redhat.ren:5021/kubernetes-helm/tiller
+docker push it-registry.ipincloud.com:5021/chartmuseum/chartmuseum
+docker push it-registry.ipincloud.com:5021/kubernetes-multicluster/federation-v2
+docker push it-registry.ipincloud.com:5021/kubernetes-helm/tiller
 
 chown -R 1000:1000 charts
 

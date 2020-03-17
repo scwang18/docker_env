@@ -10,7 +10,7 @@ external-controller: 0.0.0.0:18080
 mode: Rule
 
 hosts:
-  'registry.redhat.ren': 127.0.0.1
+  'registry.ipincloud.com': 127.0.0.1
 
 Proxy:
 - name: "socks"

@@ -34,12 +34,12 @@ wget https://get.helm.sh/helm-v2.14.1-linux-amd64.tar.gz
 wget https://github.com/kubernetes-sigs/kubefed/releases/download/v0.1.0-rc2/kubefed-0.1.0-rc2.tgz
 
 docker pull quay.io/kubernetes-multicluster/kubefed:v0.1.0-rc2
-docker tag quay.io/kubernetes-multicluster/kubefed:v0.1.0-rc2 aws-registry.redhat.ren/kubernetes-multicluster/kubefed:v0.1.0-rc2 
-docker push aws-registry.redhat.ren/kubernetes-multicluster/kubefed:v0.1.0-rc2 
+docker tag quay.io/kubernetes-multicluster/kubefed:v0.1.0-rc2 aws-registry.ipincloud.com/kubernetes-multicluster/kubefed:v0.1.0-rc2 
+docker push aws-registry.ipincloud.com/kubernetes-multicluster/kubefed:v0.1.0-rc2 
 
 docker pull gcr.io/kubernetes-helm/tiller:v2.14.1
-docker tag gcr.io/kubernetes-helm/tiller:v2.14.0 aws-registry.redhat.ren/kubernetes-helm/tiller:v2.14.1
-docker push aws-registry.redhat.ren/kubernetes-helm/tiller:v2.14.1
+docker tag gcr.io/kubernetes-helm/tiller:v2.14.0 aws-registry.ipincloud.com/kubernetes-helm/tiller:v2.14.1
+docker push aws-registry.ipincloud.com/kubernetes-helm/tiller:v2.14.1
 
 
 # change ./kubefed/values
@@ -54,8 +54,8 @@ scp kubefedctl-0.1.0-rc2-linux-amd64.tgz ec2-user@aws-m1.redhat.ren:~/
 
 # on aws-m1
 tar zvxf helm-v2.14.1-linux-amd64.tar.gz
-./linux-amd64/helm init --client-only --stable-repo-url http://aws-registry.redhat.ren:8080/
-./linux-amd64/helm repo add chartmuseum http://aws-registry.redhat.ren:8080/
+./linux-amd64/helm init --client-only --stable-repo-url http://aws-registry.ipincloud.com:8080/
+./linux-amd64/helm repo add chartmuseum http://aws-registry.ipincloud.com:8080/
 ./linux-amd64/helm search chartmuseum/
 
 sudo -i
@@ -85,13 +85,13 @@ subjects:
     namespace: federation-system
 EOF
 
-./linux-amd64/helm init --service-account tiller --client-only --stable-repo-url http://aws-registry.redhat.ren:8080/  #--tiller-tls-verify
+./linux-amd64/helm init --service-account tiller --client-only --stable-repo-url http://aws-registry.ipincloud.com:8080/  #--tiller-tls-verify
 
 export TILLER_NAMESPACE=tiller
 oc process -f ./tiller-template.yaml -p TILLER_NAMESPACE="${TILLER_NAMESPACE}" -p HELM_VERSION=v2.14.1 | oc create -f -
 
-oc --namespace=tiller set image deployments/tiller-deploy tiller=aws-registry.redhat.ren/kubernetes-helm/tiller:v2.14.1 
-oc --namespace=kube-system set image deployments/tiller-deploy tiller=aws-registry.redhat.ren/kubernetes-helm/tiller:v2.14.1 
+oc --namespace=tiller set image deployments/tiller-deploy tiller=aws-registry.ipincloud.com/kubernetes-helm/tiller:v2.14.1 
+oc --namespace=kube-system set image deployments/tiller-deploy tiller=aws-registry.ipincloud.com/kubernetes-helm/tiller:v2.14.1 
 
 ## delete tiller
 oc project tiller
@@ -99,8 +99,8 @@ oc process -f ./tiller-template.yaml -p TILLER_NAMESPACE="${TILLER_NAMESPACE}" -
 
 ./linux-amd64/helm version
 
-./linux-amd64/helm init --client-only --stable-repo-url http://aws-registry.redhat.ren:8080/
-./linux-amd64/helm repo add chartmuseum http://aws-registry.redhat.ren:8080/
+./linux-amd64/helm init --client-only --stable-repo-url http://aws-registry.ipincloud.com:8080/
+./linux-amd64/helm repo add chartmuseum http://aws-registry.ipincloud.com:8080/
 ./linux-amd64/helm search chartmuseum/
 ./linux-amd64/helm repo list
 
@@ -233,14 +233,14 @@ docker run --rm -it \
 
 docker load -i federation.tgz
 
-docker tag chartmuseum/chartmuseum aws-registry.redhat.ren/chartmuseum/chartmuseum
-docker tag quay.io/kubernetes-multicluster/federation-v2:v0.0.10 aws-registry.redhat.ren/kubernetes-multicluster/federation-v2
-docker tag quay.io/kubernetes-multicluster/kubefed:v0.1.0-rc1 aws-registry.redhat.ren/kubernetes-multicluster/kubefed
-docker tag gcr.io/kubernetes-helm/tiller:v2.14.0 aws-registry.redhat.ren/kubernetes-helm/tiller
+docker tag chartmuseum/chartmuseum aws-registry.ipincloud.com/chartmuseum/chartmuseum
+docker tag quay.io/kubernetes-multicluster/federation-v2:v0.0.10 aws-registry.ipincloud.com/kubernetes-multicluster/federation-v2
+docker tag quay.io/kubernetes-multicluster/kubefed:v0.1.0-rc1 aws-registry.ipincloud.com/kubernetes-multicluster/kubefed
+docker tag gcr.io/kubernetes-helm/tiller:v2.14.0 aws-registry.ipincloud.com/kubernetes-helm/tiller
 
-docker push aws-registry.redhat.ren/chartmuseum/chartmuseum
-docker push aws-registry.redhat.ren/kubernetes-multicluster/federation-v2
-docker push aws-registry.redhat.ren/kubernetes-helm/tiller
+docker push aws-registry.ipincloud.com/chartmuseum/chartmuseum
+docker push aws-registry.ipincloud.com/kubernetes-multicluster/federation-v2
+docker push aws-registry.ipincloud.com/kubernetes-helm/tiller
 
 chown -R 1000:1000 charts
 

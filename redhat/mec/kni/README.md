@@ -18,7 +18,7 @@ https://youtu.be/9JUHMKqixpQ
 cat << EOF >> /etc/hosts
 
 192.168.39.135  yum yum.redhat.ren
-192.168.39.31  kni-master kni-master.redhat.ren kni-registry kni-registry.redhat.ren kni-paas kni-paas.redhat.ren
+192.168.39.31  kni-master kni-master.redhat.ren kni-registry kni-registry.ipincloud.com kni-paas kni-paas.redhat.ren
 192.168.39.154  kni-infra kni-infra.redhat.ren
 192.168.39.32  kni-node1 kni-node1.redhat.ren
 192.168.39.33  kni-node2 kni-node2.redhat.ren
@@ -271,7 +271,7 @@ address=/kni-node1.redhat.ren/192.168.39.32
 address=/kni-node2.redhat.ren/192.168.39.33
 address=/kni-node3.redhat.ren/192.168.39.34
 address=/kni-node4.redhat.ren/192.168.39.152
-address=/kni-registry.redhat.ren/192.168.39.31
+address=/kni-registry.ipincloud.com/192.168.39.31
 address=/kni-paas.redhat.ren/192.168.39.31
 EOF
 
@@ -448,11 +448,11 @@ https://docs.openshift.com/container-platform/3.11/cnv_install/cnv_install.html
 oc login -u system:admin
 cd /usr/share/ansible/kubevirt-ansible
 ansible-playbook -v -i /data/down/ocp/hosts-3.11.98.cnv.yaml -e @vars/cnv.yml playbooks/kubevirt.yml \
--e apb_action=provision -e registry_url=kni-registry.redhat.ren:5021 -e docker_tag=latest
+-e apb_action=provision -e registry_url=kni-registry.ipincloud.com:5021 -e docker_tag=latest
 
 # if you want to uninstall
 ansible-playbook -v -i /data/down/ocp/hosts-3.11.98.cnv.yaml -e @vars/cnv.yml playbooks/kubevirt.yml \
--e apb_action=deprovision -e registry_url=kni-registry.redhat.ren:5021 -e docker_tag=latest
+-e apb_action=deprovision -e registry_url=kni-registry.ipincloud.com:5021 -e docker_tag=latest
 
 # 如果你想用image upload的方式上传image，要做以下3个步骤，一般用不到。
 oc delete route -n cdi cdi-uploadproxy-route
@@ -466,14 +466,14 @@ oc create route reencrypt cdi-uploadproxy-route -n cdi --service=cdi-uploadproxy
 # 可以使用iso, qcow2等等kvm认的镜像，参照win7/Dockerfile的样子
 # 去创建这个镜像，然后push到镜像仓库里面去。
 docker build -t win7_10boot ./
-docker tag win7_10boot kni-registry.redhat.ren:5021/win7_10boot
+docker tag win7_10boot kni-registry.ipincloud.com:5021/win7_10boot
 
 docker build -t win7_install ./
-docker tag win7_install kni-registry.redhat.ren:5021/win7_install
+docker tag win7_install kni-registry.ipincloud.com:5021/win7_install
 
 docker build -t win7_virtio_rhel ./
-docker tag win7_virtio_rhel kni-registry.redhat.ren:5021/win7_virtio_rhel
-docker push kni-registry.redhat.ren:5021/win7_virtio_rhel
+docker tag win7_virtio_rhel kni-registry.ipincloud.com:5021/win7_virtio_rhel
+docker push kni-registry.ipincloud.com:5021/win7_virtio_rhel
 
 
 ```

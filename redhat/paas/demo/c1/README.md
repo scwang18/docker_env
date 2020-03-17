@@ -15,7 +15,7 @@ cat << EOF > /etc/hosts
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
 
-192.168.122.111  it-m1 it-m1.redhat.ren it-registry it-registry.redhat.ren it-yum it-yum.redhat.ren
+192.168.122.111  it-m1 it-m1.redhat.ren it-registry it-registry.ipincloud.com it-yum it-yum.redhat.ren
 192.168.122.112  it-m2 it-m2.redhat.ren
 192.168.122.113  it-m3 it-m3.redhat.ren
 192.168.122.114  it-n1 it-n1.redhat.ren
@@ -313,7 +313,7 @@ address=/it-n3.redhat.ren/192.168.122.116
 address=/it-lb.redhat.ren/192.168.122.117
 address=/it-paas.redhat.ren/192.168.122.117
 address=/it-infra.redhat.ren/192.168.122.118
-address=/it-registry.redhat.ren/192.168.122.111
+address=/it-registry.ipincloud.com/192.168.122.111
 address=/it-yum.redhat.ren/192.168.122.111
 address=/it-c1.redhat.ren/192.168.122.119
 address=/it-c2.redhat.ren/192.168.122.120

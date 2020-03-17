@@ -3,7 +3,7 @@
 set -e
 set -x
 
-export STATIC_MID_REG="registry.redhat.ren"
+export STATIC_MID_REG="registry.ipincloud.com"
 
 split_image(){
 

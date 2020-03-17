@@ -7,7 +7,7 @@
 controllermanager:
   enabled: true
   replicaCount: 2
-  repository: aws-registry.redhat.ren/kubernetes-multicluster
+  repository: aws-registry.ipincloud.com/kubernetes-multicluster
   image: federation-v2
   tag: v0.0.10
   imagePullPolicy: IfNotPresent

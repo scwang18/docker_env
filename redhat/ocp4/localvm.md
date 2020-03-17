@@ -43,7 +43,7 @@ pigz -dc registry.tgz | tar xf -
 systemctl restart docker-distribution
 
 
-oc adm upgrade --to-image=registry.redhat.ren/ocp4/openshift4
+oc adm upgrade --to-image=registry.ipincloud.com/ocp4/openshift4
 
 ```
 

@@ -7,7 +7,7 @@
 controllermanager:
   enabled: true
   replicaCount: 2
-  repository: it-registry.redhat.ren:5080/kubernetes-multicluster
+  repository: it-registry.ipincloud.com:5080/kubernetes-multicluster
   image: kubefed
   tag: latest
   imagePullPolicy: IfNotPresent

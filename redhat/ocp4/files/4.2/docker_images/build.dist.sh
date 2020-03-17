@@ -17,7 +17,7 @@ wget -O install.image.list https://raw.githubusercontent.com/wangzheng422/docker
 wget -O add.image.load.sh https://raw.githubusercontent.com/wangzheng422/docker_env/dev/redhat/ocp4/files/4.2/docker_images/add.image.load.sh
 
 cat << EOF >>  /etc/hosts
-127.0.0.1 registry.redhat.ren
+127.0.0.1 registry.ipincloud.com
 EOF
 
 mkdir -p /etc/crts/
@@ -56,7 +56,7 @@ EOF
 
 systemctl restart docker-distribution
 
-podman login registry.redhat.ren:5443 -u a -p a
+podman login registry.ipincloud.com:5443 -u a -p a
 
 cd /data/ocp4
 # wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest-4.2/release.txt
@@ -79,7 +79,7 @@ install_build() {
     tar -xzf openshift-install-linux-${BUILDNUMBER}.tar.gz -C /usr/local/bin/
 
     export OCP_RELEASE=${BUILDNUMBER}
-    export LOCAL_REG='registry.redhat.ren:5443'
+    export LOCAL_REG='registry.ipincloud.com:5443'
     export LOCAL_REPO='ocp4/openshift4'
     export UPSTREAM_REPO='openshift-release-dev'
     export LOCAL_SECRET_JSON="/data/pull-secret.json"

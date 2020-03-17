@@ -8,7 +8,7 @@ based on <https://docs.openshift.com/container-platform/3.11/install/disconnecte
 
 ```host
 192.168.39.135  yum yum.redhat.ren
-192.168.39.129  master master.redhat.ren registry registry.redhat.ren paas paas.redhat.ren
+192.168.39.129  master master.redhat.ren registry registry.ipincloud.com paas paas.redhat.ren
 192.168.39.130  infra infra.redhat.ren
 192.168.39.131  node1 node1.redhat.ren
 192.168.39.132  node2 node2.redhat.ren
@@ -299,7 +299,7 @@ address=/infra.redhat.ren/192.168.39.130
 address=/node1.redhat.ren/192.168.39.131
 address=/node2.redhat.ren/192.168.39.132
 address=/node4.redhat.ren/192.168.39.134
-address=/registry.redhat.ren/192.168.39.129
+address=/registry.ipincloud.com/192.168.39.129
 address=/paas.redhat.ren/192.168.39.129
 EOF
 
@@ -374,7 +374,7 @@ docker run --rm \
  -e HARBOR_USERNAME="admin" \
  -e HARBOR_PASSWORD="Harbor12345" \
  -e HARBOR_PROJECT=1 \
- -e HARBOR_URL="https://registry.redhat.ren" \
+ -e HARBOR_URL="https://registry.ipincloud.com" \
  redhat/harborclient harbor info \
  openshift3 rhel7 cloudforms46 rhgs3 jboss-amq-6 jboss-datagrid-7 jboss-datavirt-6 jboss-decisionserver-6 jboss-processserver-6 jboss-eap-6 jboss-eap-7 jboss-webserver-3 rhscl redhat-sso-7 redhat-openjdk-18 gitlab nfvpe centos kubevirt nvidia mirrorgooglecontainers krystism coreos
 ```
@@ -515,8 +515,8 @@ oc apply -f operator.yaml
 使用 vm/Dockerfile 制作虚拟机要用的镜像
 
 ```bash
-docker build -t registry.redhat.ren/vmidisks/rhel7.6:latest .
-docker push registry.redhat.ren/vmidisks/rhel7.6:latest
+docker build -t registry.ipincloud.com/vmidisks/rhel7.6:latest .
+docker push registry.ipincloud.com/vmidisks/rhel7.6:latest
 
 oc create configmap kubevirt-config --from-literal feature-gates=DataVolumes -n kube-system
 
@@ -544,7 +544,7 @@ cat startup.sh | base64
 ```yaml
       volumes:
         - containerDisk:
-            image: 'registry.redhat.ren/vmidisks/rhel7.6:latest'
+            image: 'registry.ipincloud.com/vmidisks/rhel7.6:latest'
           name: rootdisk
         - cloudInitNoCloud:
             userDataBase64: >-

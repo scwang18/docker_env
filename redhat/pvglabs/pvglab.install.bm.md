@@ -48,7 +48,7 @@ yum -y install dnsmasq
 # cat  > /etc/dnsmasq.d/openshift-cluster.conf << EOF
 # local=/redhat.ren/
 # address=/yum.redhat.ren/192.168.7.1
-# address=/registry.redhat.ren/192.168.7.1
+# address=/registry.ipincloud.com/192.168.7.1
 # EOF
 
 systemctl restart dnsmasq.service && systemctl enable dnsmasq.service && systemctl status dnsmasq.service
@@ -100,8 +100,8 @@ EOF
 systemctl enable docker-distribution
 systemctl restart docker-distribution
 
-ansible localhost -m lineinfile -a 'path=/etc/hosts line="127.0.0.1 registry.redhat.ren"'
-# podman login registry.redhat.ren -u a -p a
+ansible localhost -m lineinfile -a 'path=/etc/hosts line="127.0.0.1 registry.ipincloud.com"'
+# podman login registry.ipincloud.com -u a -p a
 
 firewall-cmd --permanent --add-service=https
 firewall-cmd --reload

@@ -14,7 +14,7 @@ dummy=$1
 ## read configration
 source config.sh
 
-private_repo="registry.redhat.ren"
+private_repo="registry.ipincloud.com"
 major_tag="v3.11"
 
 #################################

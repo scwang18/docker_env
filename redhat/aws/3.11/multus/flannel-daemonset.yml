@@ -122,7 +122,7 @@ spec:
       containers:
       - name: kube-flannel
         # image: quay.io/coreos/flannel:v0.10.0-amd64
-        image: aws-registry.redhat.ren/coreos/flannel:v0.10.0-amd64
+        image: aws-registry.ipincloud.com/coreos/flannel:v0.10.0-amd64
         command:
         - /opt/bin/flanneld
         args:

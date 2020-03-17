@@ -3,7 +3,7 @@
 set -e
 # set -x
 
-export LOCAL_REG='registry.redhat.ren'
+export LOCAL_REG='registry.ipincloud.com'
 
 var_json=$(oc get is -n openshift -l samples.operator.openshift.io/managed=true -o json)
 

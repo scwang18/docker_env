@@ -19,7 +19,7 @@ networking:
   - 172.30.0.0/16
 platform:
   none: {}
-pullSecret: '{"auths":{"registry.redhat.ren:5443": {"auth": "ZHVtbXk6ZHVtbXk=","email": "noemail@localhost"},"registry.ppa.redhat.ren:5443": {"auth": "ZHVtbXk6ZHVtbXk=","email": "noemail@localhost"}}}'
+pullSecret: '{"auths":{"registry.ipincloud.com:5443": {"auth": "ZHVtbXk6ZHVtbXk=","email": "noemail@localhost"},"registry.ppa.redhat.ren:5443": {"auth": "ZHVtbXk6ZHVtbXk=","email": "noemail@localhost"}}}'
 sshKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDJsDK2uiPRt8+VRu6rcuEhdpCffP95LK8pv0hwuGJ74tWamYx37UBHf5Cv4ISsuh4nd6O6bM8TsIvJe2jy6RjiN/h/OtpORxMj9mLeion6+iHESUt+vbcu4ogwgChLdMTMsaAP0FJ6hVfvLTmvNf/4bGBk/XDj7FFtTRH+nSeIfXbaFI7BpVYR/d9D3AJkUbMs/wjEWgIBLhhYt9BSaqr2/6rWGZYrqEPHtHCL6y3JaNFoDtFwQy91mthHY3XJvMZhqlL81PsjGuB5avDQVITWcpoMJUC4B6F1UQqpTuGQc+9oeLmbTuccqXoHAFK6Zrmiu4K1DhOB1SzcwFYgD34B root@helper'
 additionalTrustBundle: |
   -----BEGIN CERTIFICATE-----
@@ -46,8 +46,8 @@ additionalTrustBundle: |
   -----END CERTIFICATE-----
 imageContentSources:
 - mirrors:
-  - registry.redhat.ren:5443/ocp4/openshift4
+  - registry.ipincloud.com:5443/ocp4/openshift4
   source: quay.io/openshift-release-dev/ocp-release
 - mirrors:
-  - registry.redhat.ren:5443/ocp4/openshift4
+  - registry.ipincloud.com:5443/ocp4/openshift4
   source: quay.io/openshift-release-dev/ocp-v4.0-art-dev

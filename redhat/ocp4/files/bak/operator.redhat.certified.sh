@@ -87,7 +87,7 @@ while read -r line; do
 
 done < url.txt
 
-podman build -f ../custom-registry.Dockerfile -t registry.redhat.ren/ocp-operator/custom-registry ./
+podman build -f ../custom-registry.Dockerfile -t registry.ipincloud.com/ocp-operator/custom-registry ./
 
 podman image prune
 

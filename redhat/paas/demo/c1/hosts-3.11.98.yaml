@@ -35,7 +35,7 @@ template_service_broker_selector='node-role.kubernetes.io/infra=true'
 osm_default_node_selector='node-role.kubernetes.io/compute=true'
 
 
-#openshift_docker_insecure_registries="kni-registry.redhat.ren:5021"
+#openshift_docker_insecure_registries="kni-registry.ipincloud.com:5021"
 
 openshift_metrics_hawkular_hostname=hawkular-metrics.it-apps.redhat.ren
 
@@ -84,9 +84,9 @@ openshift_master_console_port=8443
 #####################################################
 # glusterfs
 #####################################################
-openshift_storage_glusterfs_image=it-registry.redhat.ren:5021/rhgs3/rhgs-server-rhel7:v3.11
-openshift_storage_glusterfs_block_image=it-registry.redhat.ren:5021/rhgs3/rhgs-gluster-block-prov-rhel7:v3.11
-openshift_storage_glusterfs_heketi_image=it-registry.redhat.ren:5021/rhgs3/rhgs-volmanager-rhel7:v3.11
+openshift_storage_glusterfs_image=it-registry.ipincloud.com:5021/rhgs3/rhgs-server-rhel7:v3.11
+openshift_storage_glusterfs_block_image=it-registry.ipincloud.com:5021/rhgs3/rhgs-gluster-block-prov-rhel7:v3.11
+openshift_storage_glusterfs_heketi_image=it-registry.ipincloud.com:5021/rhgs3/rhgs-volmanager-rhel7:v3.11
 
 openshift_storage_glusterfs_namespace=glusterfs-storage
 openshift_storage_glusterfs_storageclass=true
@@ -106,7 +106,7 @@ openshift_storage_glusterfs_block_storageclass_default=false
 # EXTERNAL REGISTRY LOCATION 
 #####################################################
 
-oreg_url=it-registry.redhat.ren:5021/openshift3/ose-${component}:${version}
+oreg_url=it-registry.ipincloud.com:5021/openshift3/ose-${component}:${version}
 openshift_examples_modify_imagestreams=true
 # oreg_auth_user=admin
 # oreg_auth_password=Harbor12345
@@ -156,14 +156,14 @@ openshift_metrics_cassandra_storage_type=dynamic
 # openshift_metrics_storage_volume_name=metrics
 # openshift_metrics_storage_volume_size=10Gi
 
-openshift_metrics_image_prefix=it-registry.redhat.ren:5021/openshift3/
+openshift_metrics_image_prefix=it-registry.ipincloud.com:5021/openshift3/
 
 openshift_logging_install_logging=true
 openshift_logging_es_pvc_dynamic=true
 # openshift_logging_elasticsearch_storage_type=pvc
 # openshift_logging_es_pvc_storage_class_name=glusterfs-storage
 
-openshift_logging_image_prefix=it-registry.redhat.ren:5021/openshift3/
+openshift_logging_image_prefix=it-registry.ipincloud.com:5021/openshift3/
 
 openshift_metrics_cassandra_nodeselector={"node-role.kubernetes.io/infra":"true"}
 openshift_metrics_hawkular_nodeselector={"node-role.kubernetes.io/infra":"true"}
@@ -177,7 +177,7 @@ openshift_logging_es_memory_limit=2G
 #####################################################
 
 openshift_enable_service_catalog=true
-openshift_service_catalog_image_prefix=it-registry.redhat.ren:5021/openshift3/ose-
+openshift_service_catalog_image_prefix=it-registry.ipincloud.com:5021/openshift3/ose-
 openshift_service_catalog_image_version=v3.11.98
 
 
@@ -188,10 +188,10 @@ openshift_release=v3.11
 #
 # Set cockpit plugins
 # osm_cockpit_plugins=['cockpit-kubernetes']
-# openshift_cockpit_deployer_prefix='kni-registry.redhat.ren:5021/openshift3/'
+# openshift_cockpit_deployer_prefix='kni-registry.ipincloud.com:5021/openshift3/'
 # openshift_cockpit_deployer_version=v3.11.98
 
-system_images_registry="it-registry.redhat.ren:5021"
+system_images_registry="it-registry.ipincloud.com:5021"
 
 openshift_enable_unsupported_configurations=True
 
@@ -205,12 +205,12 @@ openshift_template_service_broker_namespaces=['openshift','tsb']
 
 
 # Configure one of more namespaces whose templates will be served by the TSB
-ansible_service_broker_image_prefix=it-registry.redhat.ren:5021/openshift3/ose-
+ansible_service_broker_image_prefix=it-registry.ipincloud.com:5021/openshift3/ose-
 ansible_service_broker_image_tag=v3.11.98
-ansible_service_broker_etcd_image_prefix=it-registry.redhat.ren:5021/rhel7/
-ansible_service_broker_registry_url=https://it-registry.redhat.ren:5021
+ansible_service_broker_etcd_image_prefix=it-registry.ipincloud.com:5021/rhel7/
+ansible_service_broker_registry_url=https://it-registry.ipincloud.com:5021
 
-template_service_broker_prefix=it-registry.redhat.ren:5021/openshift3/ose-
+template_service_broker_prefix=it-registry.ipincloud.com:5021/openshift3/ose-
 template_service_broker_version=v3.11.98
 
 
@@ -220,7 +220,7 @@ template_service_broker_version=v3.11.98
 
 
 ansible_service_broker_install=true
-# openshift_service_catalog_image_prefix=kni-registry.redhat.ren:5021/openshift3/ose-
+# openshift_service_catalog_image_prefix=kni-registry.ipincloud.com:5021/openshift3/ose-
 openshift_hosted_etcd_storage_kind=glusterfs
 # # openshift_storage_glusterfs_name=glusterfs-storage
 openshift_storage_glusterfs_storageclass_default=true
@@ -239,7 +239,7 @@ openshift_storage_glusterfs_storageclass_default=true
 ####################
 
 openshift_web_console_install=true
-openshift_web_console_prefix=it-registry.redhat.ren:5021/openshift3/ose-
+openshift_web_console_prefix=it-registry.ipincloud.com:5021/openshift3/ose-
 
 ####################
 # monitor
