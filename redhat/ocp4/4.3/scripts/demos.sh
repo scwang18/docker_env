@@ -3,7 +3,7 @@
 set -e
 set -x
 
-mkdir -p /data/ocp4/demo/
+mkdir -p /home/data/ocp4/demo/
 
 cd /data/ocp4/demo
 

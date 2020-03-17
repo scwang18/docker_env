@@ -10,7 +10,7 @@ parm_file=$1
 touch pull.add.image.ok.list
 touch pull.add.image.docker.ok.list
 
-export MIRROR_DIR='/data/mirror_dir'
+export MIRROR_DIR='/home/data/mirror_dir'
 # /bin/rm -rf ${MIRROR_DIR}
 mkdir -p ${MIRROR_DIR}/oci
 mkdir -p ${MIRROR_DIR}/docker
@@ -19,18 +19,18 @@ export LOCAL_REG=''
 source image.mirror.fn.sh
 
 # mkdir -p ./image_tar
-# /bin/rm -rf /data/registry-add
+# /bin/rm -rf /home/data/registry-add
 
-# mkdir -p /data/registry-add
-# mkdir -p /data/ocp4/certs
-# mkdir -p /data/registry-add
-# cp /etc/crts/redhat.ren.crt /data/ocp4/certs
-# cp /etc/crts/redhat.ren.key /data/ocp4/certs
+# mkdir -p /home/data/registry-add
+# mkdir -p /home/data/ocp4/certs
+# mkdir -p /home/data/registry-add
+# cp /etc/crts/redhat.ren.crt /home/data/ocp4/certs
+# cp /etc/crts/redhat.ren.key /home/data/ocp4/certs
 
 # podman run -d --name mirror-registry \
 # -p 5000:5000 --restart=always \
-# -v /data/registry-add:/var/lib/registry:z \
-# -v /data/ocp4/certs:/certs:z \
+# -v /home/data/registry-add:/var/lib/registry:z \
+# -v /home/data/ocp4/certs:/certs:z \
 # -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/redhat.ren.crt \
 # -e REGISTRY_HTTP_TLS_KEY=/certs/redhat.ren.key \
 # docker.io/library/registry:2
@@ -44,7 +44,7 @@ done < ${parm_file}  # add.image.list
 /bin/cp -f pull.add.image.ok.list ${MIRROR_DIR}/
 /bin/cp -f pull.add.image.docker.ok.list ${MIRROR_DIR}/
 
-cd /data
+cd /home/data
 tar cf - mirror_dir/ | pigz -c > mirror_dir.tgz 
 
 

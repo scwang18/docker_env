@@ -6,12 +6,12 @@ set -x
 var_date=$(date '+%Y-%m-%d')
 echo $var_date
 
-cd /data/ocp4
-/bin/rm -rf /data/ocp4/operator
+cd /home/data/ocp4
+/bin/rm -rf /home/data/ocp4/operator
 /bin/rm -f operator.ok.list operator.failed.list
-mkdir -p /data/ocp4/operator/manifests
-mkdir -p /data/ocp4/operator/tgz
-cd /data/ocp4/operator/
+mkdir -p /home/data/ocp4/operator/manifests
+mkdir -p /home/data/ocp4/operator/tgz
+cd /home/data/ocp4/operator/
 
 curl https://quay.io/cnr/api/v1/packages?namespace=redhat-operators > packages.txt
 curl https://quay.io/cnr/api/v1/packages?namespace=certified-operators >> packages.txt
@@ -74,17 +74,17 @@ while read -r line; do
         
         cat manifests/${namespace}.$name/bundle.yaml | yq -r .data.packages | sed 's/^..//' > manifests/${namespace}.$name/package.yaml 
 
-        # echo "with bundle: $line" >> /data/ocp4/operator.ok.list
+        # echo "with bundle: $line" >> /home/data/ocp4/operator.ok.list
     # else
-        # echo "ok: $line" >> /data/ocp4/operator.failed.list
+        # echo "ok: $line" >> /home/data/ocp4/operator.failed.list
     fi  
 
     # /bin/rm -f manifests/${namespace}.$name/bundle.yaml
 
-    # if podman build -f /data/ocp4/custom-registry.Dockerfile -t registry.ipincloud.com:5443/ocp-operator/custom-registry ./ ; then
-    #     echo "$line" >> /data/ocp4/operator.ok.list
+    # if podman build -f /home/data/ocp4/custom-registry.Dockerfile -t registry.ipincloud.com:5443/ocp-operator/custom-registry ./ ; then
+    #     echo "$line" >> /home/data/ocp4/operator.ok.list
     # else
-    #     echo "$line" >> /data/ocp4/operator.failed.list
+    #     echo "$line" >> /home/data/ocp4/operator.failed.list
     #     /bin/rm -rf manifests/${namespace}.$name
     # fi
 
@@ -92,33 +92,33 @@ while read -r line; do
 
 done < url.txt
 
-# cd /data/ocp4/operator
+# cd /home/data/ocp4/operator
 # chown -R 1001:1001 *
 # tar zcf manifests.tgz manifests/
 
-cd /data/ocp4
+cd /home/data/ocp4
 
-# find ./operator -type f | xargs egrep "(containerImage: |image: |value: )" | sed 's/\\n/\n/g'| sed 's/^.*containerImage: //' | sed 's/^.*image: //' | sed 's/^.*value: //' | egrep "^.*\.(io|com|org|net)/.*:.*" | sed s/"'"//g | sed 's/\"//g' | sort | uniq  > /data/ocp4/operator.image.list
+# find ./operator -type f | xargs egrep "(containerImage: |image: |value: )" | sed 's/\\n/\n/g'| sed 's/^.*containerImage: //' | sed 's/^.*image: //' | sed 's/^.*value: //' | egrep "^.*\.(io|com|org|net)/.*:.*" | sed s/"'"//g | sed 's/\"//g' | sort | uniq  > /home/data/ocp4/operator.image.list
 
-# find ./operator -type f | xargs egrep "(containerImage: |image: |value: )" | sed 's/\\n/\n/g'| sed 's/^.*image: //' | sed 's/^.*value: //' | egrep -v "^.*\.(io|com|org|net)/.*:.*"| egrep  "^[[:alnum:]]*/.*:[[:print:]]*$" | sed s/"'"//g | sed 's/\"//g' | sort | uniq  >> /data/ocp4/operator.image.list
+# find ./operator -type f | xargs egrep "(containerImage: |image: |value: )" | sed 's/\\n/\n/g'| sed 's/^.*image: //' | sed 's/^.*value: //' | egrep -v "^.*\.(io|com|org|net)/.*:.*"| egrep  "^[[:alnum:]]*/.*:[[:print:]]*$" | sed s/"'"//g | sed 's/\"//g' | sort | uniq  >> /home/data/ocp4/operator.image.list
 
 # find ./manifests -type f | xargs egrep -h "=[[:alnum:]|\.]+\.(io|com|org|net)/[[:graph:]]+$" | grep -v "apiVersion:" | grep -v "version:" 
 
 # find ./manifests -type f | xargs egrep -h " [[:alnum:]|\.]+\.(io|com|org|net)/[[:graph:]]+$" | grep -v "apiVersion:" | grep -v "version:" 
 
-find ./operator/manifests -type f | xargs egrep -oh " [[:alnum:]|\.]+/[[:graph:]]+:[[:graph:]]+$" | sed 's/\\n/\n/g' | egrep -o "[[:alnum:]|\.]+/[[:graph:]]+:[[:graph:]]+$" | grep -v "\*\*" | sed "s/'//g" > /data/ocp4/operator.image.list
+find ./operator/manifests -type f | xargs egrep -oh " [[:alnum:]|\.]+/[[:graph:]]+:[[:graph:]]+$" | sed 's/\\n/\n/g' | egrep -o "[[:alnum:]|\.]+/[[:graph:]]+:[[:graph:]]+$" | grep -v "\*\*" | sed "s/'//g" > /home/data/ocp4/operator.image.list
 
-find ./operator/manifests -type f | xargs egrep -oh "=[[:alnum:]|\.]+/[[:graph:]]+:[[:graph:]]+$" | egrep -o "[[:alnum:]|\.]+/[[:graph:]]+:[[:graph:]]+$" | sed "s/'//g" >> /data/ocp4/operator.image.list
+find ./operator/manifests -type f | xargs egrep -oh "=[[:alnum:]|\.]+/[[:graph:]]+:[[:graph:]]+$" | egrep -o "[[:alnum:]|\.]+/[[:graph:]]+:[[:graph:]]+$" | sed "s/'//g" >> /home/data/ocp4/operator.image.list
 
-find ./operator/manifests -type f | xargs egrep -oh " [[:alnum:]|\.]+\.(io|com|org|net)/[[:graph:]]+$" | sed 's/\\n/\n/g' | grep -v "/v1" | grep -v "github.com" | grep -v "discovery.3scale.net" | egrep -o "[[:alnum:]|\.]+\.(io|com|org|net)/[[:graph:]]+$" | sed "s/'//g" >> /data/ocp4/operator.image.list
+find ./operator/manifests -type f | xargs egrep -oh " [[:alnum:]|\.]+\.(io|com|org|net)/[[:graph:]]+$" | sed 's/\\n/\n/g' | grep -v "/v1" | grep -v "github.com" | grep -v "discovery.3scale.net" | egrep -o "[[:alnum:]|\.]+\.(io|com|org|net)/[[:graph:]]+$" | sed "s/'//g" >> /home/data/ocp4/operator.image.list
 
-find ./operator/manifests -type f | xargs egrep -oh "=[[:alnum:]|\.]+/[[:graph:]]+$" | sed 's/\\n/\n/g'  | egrep -o "[[:alnum:]|\.]+/[[:graph:]]+$" | sed "s/'//g" >> /data/ocp4/operator.image.list
+find ./operator/manifests -type f | xargs egrep -oh "=[[:alnum:]|\.]+/[[:graph:]]+$" | sed 's/\\n/\n/g'  | egrep -o "[[:alnum:]|\.]+/[[:graph:]]+$" | sed "s/'//g" >> /home/data/ocp4/operator.image.list
 
-cat /data/ocp4/operator.image.list | grep "^[[:alnum:]].*[[:alnum:]]$" | sort | uniq > /data/ocp4/operator.image.list.uniq
+cat /home/data/ocp4/operator.image.list | grep "^[[:alnum:]].*[[:alnum:]]$" | sort | uniq > /home/data/ocp4/operator.image.list.uniq
 
-/bin/cp -f /data/ocp4/operator.image.list.uniq /data/ocp4/operator/operator.image.list.uniq
+/bin/cp -f /home/data/ocp4/operator.image.list.uniq /home/data/ocp4/operator/operator.image.list.uniq
 
-cd /data/ocp4/operator
+cd /home/data/ocp4/operator
 chown -R 1001:1001 *
 tar zcf manifests.tgz manifests/
 

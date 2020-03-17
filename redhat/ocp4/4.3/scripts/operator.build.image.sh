@@ -3,7 +3,7 @@
 set -e
 set -x
 
-cd /data/ocp4/operator/
+cd /home/data/ocp4/operator/
 
 var_date=$(date '+%Y-%m-%d')
 echo $var_date

@@ -17,7 +17,7 @@ EOF
 export var_date='2020-02-29'
 echo $var_date
 
-# export MIRROR_DIR='/data/mirror_dir'
+# export MIRROR_DIR='/home/data/mirror_dir'
 # mkdir -p ${MIRROR_DIR}
 
 wget -O image.mirror.fn.sh https://raw.githubusercontent.com/wangzheng422/docker_env/dev/redhat/ocp4/4.3/scripts/image.mirror.fn.sh
@@ -36,8 +36,8 @@ wget -O demos.sh https://raw.githubusercontent.com/wangzheng422/docker_env/dev/r
 
 # podman login registry.ipincloud.com:5443 -u a -p a
 
-mkdir -p /data/ocp4
-cd /data/ocp4
+mkdir -p /home/data/ocp4
+cd /home/data/ocp4
 # wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest-4.2/release.txt
 
 # export BUILDNUMBER=$(cat release.txt | grep 'Name:' | awk '{print $NF}')
@@ -46,9 +46,9 @@ install_build() {
     BUILDNUMBER=$1
     echo ${BUILDNUMBER}
 
-    rm -rf /data/ocp4/${BUILDNUMBER}
-    mkdir -p /data/ocp4/${BUILDNUMBER}
-    cd /data/ocp4/${BUILDNUMBER}
+    rm -rf /home/data/ocp4/${BUILDNUMBER}
+    mkdir -p /home/data/ocp4/${BUILDNUMBER}
+    cd /home/data/ocp4/${BUILDNUMBER}
 
     wget -O release.txt https://mirror.openshift.com/pub/openshift-v4/clients/ocp/${BUILDNUMBER}/release.txt
 
@@ -62,7 +62,7 @@ install_build() {
     export LOCAL_REG='registry.ipincloud.com:5443'
     export LOCAL_REPO='ocp4/openshift4'
     export UPSTREAM_REPO='openshift-release-dev'
-    export LOCAL_SECRET_JSON="/data/pull-secret.json"
+    export LOCAL_SECRET_JSON="/home/data/pull-secret.json"
     export OPENSHIFT_INSTALL_RELEASE_IMAGE_OVERRIDE=${LOCAL_REG}/${LOCAL_REPO}:${OCP_RELEASE}
     export RELEASE_NAME="ocp-release"
 
@@ -90,7 +90,7 @@ while read -r line; do
     install_build $line
 done <<< "$build_number_list"
 
-cd /data/ocp4
+cd /home/data/ocp4
 
 wget --recursive --no-directories --no-parent https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.3/latest/
 
@@ -113,7 +113,7 @@ podman save docker.io/library/registry:2 | pigz -c > registry.tgz
 # wget http://mirror.centos.org/centos/7/os/x86_64/Packages/python-rhsm-certificates-1.19.10-1.el7_4.x86_64.rpm
 # rpm2cpio python-rhsm-certificates-1.19.10-1.el7_4.x86_64.rpm | cpio -iv --to-stdout ./etc/rhsm/ca/redhat-uep.pem | tee /etc/rhsm/ca/redhat-uep.pem
 
-cd /data/ocp4
+cd /home/data/ocp4
 # download additinal images
 # scp files/4.2/docker_image/* 
 
@@ -132,7 +132,7 @@ cd /data/ocp4
 
 # operator images
 # podman run -d --name catalog-fs --entrypoint "tail" docker.io/wangzheng422/operator-catalog:fs-$var_date -f /dev/null
-# podman cp catalog-fs:/operator.image.list.uniq /data/ocp4/
+# podman cp catalog-fs:/operator.image.list.uniq /home/data/ocp4/
 # podman rm -fv catalog-fs
 
 # 以下命令要运行 2-3个小时，耐心等待。。。
@@ -159,26 +159,26 @@ oc adm catalog mirror \
 
 bash image.registries.conf.sh
 
-cd /data
+cd /home/data
 tar cf - registry/ | pigz -c > registry.tgz 
 
-# cd /data/ocp4
+# cd /home/data/ocp4
 # bash image.mirror.sh
-# cd /data
+# cd /home/data
 # tar cf - registry/ | pigz -c > registry.with.operator.image.tgz  
 
-# cd /data/ocp4
+# cd /home/data/ocp4
 # bash image.mirror.sample.sh
-# cd /data
+# cd /home/data
 # tar cf - registry/ | pigz -c > registry.full.with.sample.tgz 
 
-cd /data
+cd /home/data
 tar cf - ocp4/ | pigz -c > ocp4.tgz 
 
 # split -b 10G registry.with.operator.image.tgz registry.
-# find /data -maxdepth 1 -type f -exec sha256sum {} \;
+# find /home/data -maxdepth 1 -type f -exec sha256sum {} \;
 echo "$build_number_list" > versions.txt
-find /data -maxdepth 1 -type f -exec sha256sum {} \; > checksum.txt
+find /home/data -maxdepth 1 -type f -exec sha256sum {} \; > checksum.txt
 
 # find ./ -maxdepth 1 -name "*.tgz" -exec skicka upload {}  /"zhengwan.share/shared_docs/2020.02/ocp.ccn.4.3.3/" \;
 # find ./ -maxdepth 1 -name "*.txt" -exec skicka upload {}  /"zhengwan.share/shared_docs/2020.02/ocp.ccn.4.3.3/" \;
