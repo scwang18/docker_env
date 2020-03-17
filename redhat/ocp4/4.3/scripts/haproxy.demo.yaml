@@ -25,7 +25,7 @@ spec:
             - name: STATS_PORT
               value: '19360'
           imagePullPolicy: IfNotPresent
-          image: registry.redhat.ren:5443/docker.io/tomcat:latest
+          image: registry.ipincloud.com:5443/docker.io/library/tomcat:latest
 ---
 kind: Service
 apiVersion: v1
@@ -90,7 +90,7 @@ spec:
             - name: MYSQL_DATABASE
               value: 'db'
           imagePullPolicy: IfNotPresent
-          image: registry.redhat.ren:5443/registry.redhat.io/rhel8/mysql-80
+          image: registry.ipincloud.com:5443/registry.redhat.io/rhel8/mysql-80
 ---
 kind: Service
 apiVersion: v1

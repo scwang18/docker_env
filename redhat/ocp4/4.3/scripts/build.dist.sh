@@ -34,7 +34,7 @@ wget -O add.image.sh https://raw.githubusercontent.com/wangzheng422/docker_env/d
 
 wget -O demos.sh https://raw.githubusercontent.com/wangzheng422/docker_env/dev/redhat/ocp4/4.3/scripts/demos.sh
 
-# podman login registry.redhat.ren -u a -p a
+# podman login registry.ipincloud.com:5443 -u a -p a
 
 mkdir -p /data/ocp4
 cd /data/ocp4
@@ -59,7 +59,7 @@ install_build() {
     tar -xzf openshift-install-linux-${BUILDNUMBER}.tar.gz -C /usr/local/sbin/
 
     export OCP_RELEASE=${BUILDNUMBER}
-    export LOCAL_REG='registry.redhat.ren:5443'
+    export LOCAL_REG='registry.ipincloud.com:5443'
     export LOCAL_REPO='ocp4/openshift4'
     export UPSTREAM_REPO='openshift-release-dev'
     export LOCAL_SECRET_JSON="/data/pull-secret.json"
@@ -77,7 +77,7 @@ install_build() {
     # --from=quay.io/${UPSTREAM_REPO}/${RELEASE_NAME}:${OCP_RELEASE}-x86_64 \
     # --to-dir=${MIRROR_DIR}
 
-    # oc image mirror --dir=mirror file://ocp4/openshift4/release:* registry.redhat.ren:5443/ocp4/openshift4 --registry-config=/root/merged_pullsecret.json
+    # oc image mirror --dir=mirror file://ocp4/openshift4/release:* registry.ipincloud.com:5443/ocp4/openshift4 --registry-config=/root/merged_pullsecret.json
 
     # oc adm release mirror -a ${LOCAL_SECRET_JSON} \
     # --from=quay.io/${UPSTREAM_REPO}/${RELEASE_NAME}:${OCP_RELEASE}-s390 \
@@ -144,17 +144,17 @@ bash demos.sh
 # build operator catalog
 oc adm catalog mirror \
     docker.io/wangzheng422/operator-catalog:redhat-$var_date \
-    registry.redhat.ren:5443/ocp-operator 
+    registry.ipincloud.com:5443/ocp-operator 
 /bin/cp -f operator-catalog-manifests/mapping.txt mapping-redhat.txt
 
 oc adm catalog mirror \
     docker.io/wangzheng422/operator-catalog:certified-$var_date \
-    registry.redhat.ren:5443/ocp-operator 
+    registry.ipincloud.com:5443/ocp-operator 
 /bin/cp -f operator-catalog-manifests/mapping.txt mapping-certified.txt
 
 oc adm catalog mirror \
     docker.io/wangzheng422/operator-catalog:community-$var_date \
-    registry.redhat.ren:5443/ocp-operator 
+    registry.ipincloud.com:5443/ocp-operator 
 /bin/cp -f operator-catalog-manifests/mapping.txt mapping-community.txt
 
 bash image.registries.conf.sh

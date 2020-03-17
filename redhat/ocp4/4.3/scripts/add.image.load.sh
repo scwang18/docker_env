@@ -6,7 +6,7 @@ set -x
 parm_dir=$1
 
 # export MID_REG='registry-add.redhat.ren:5000'
-export LOCAL_REG='registry.redhat.ren:5443'
+export LOCAL_REG='registry.ipincloud.com:5443'
 # export MIRROR_DIR='/data/mirror_dir'
 # export MIRROR_DIR=${parm_dir}
 

@@ -12,11 +12,11 @@ docker.io/ceph/ceph:v14
 
 docker.io/nfvpe/cni-route-override:latest
 
-docker.io/busybox:latest
+docker.io/library/busybox:latest
 docker.io/etherpad/etherpad:latest
 docker.io/etherpad/etherpad:1.7.5
-docker.io/tomcat:latest
-docker.io/mysql:latest
+docker.io/library/tomcat:latest
+docker.io/library/mysql:latest
 registry.redhat.io/rhel8/mysql-80
 
 #####################################################

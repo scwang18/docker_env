@@ -81,7 +81,7 @@ while read -r line; do
 
     # /bin/rm -f manifests/${namespace}.$name/bundle.yaml
 
-    # if podman build -f /data/ocp4/custom-registry.Dockerfile -t registry.redhat.ren/ocp-operator/custom-registry ./ ; then
+    # if podman build -f /data/ocp4/custom-registry.Dockerfile -t registry.ipincloud.com:5443/ocp-operator/custom-registry ./ ; then
     #     echo "$line" >> /data/ocp4/operator.ok.list
     # else
     #     echo "$line" >> /data/ocp4/operator.failed.list
